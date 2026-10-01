@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ayush Dhabsa // Research &amp; Field Logs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=VT323&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0b0912;--fg:#cfc6e8;--dim:#7d7399;--a:#ff2a9d;--b:#19e6ff;
+  --pink:var(--a);--cyan:var(--b);--amber:#ffb000;
+  --s1:#0b0416;--s2:#2a0b4d;--s3:#6a1a6e;--sun3:#b0128a;--floor:#12052a;
+  --term:'VT323','Courier New',monospace;--disp:'Orbitron','Arial Black',Impact,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="amber"]{--a:#ffb000;--b:#ffd98a;--s2:#3d2a00;--s3:#7a4a00;--sun3:#b06a00;--floor:#1a1000}
+:root[data-theme="green"]{--a:#33ff66;--b:#9dffb8;--s1:#02110a;--s2:#053d2a;--s3:#0a7a4a;--sun3:#2a9d00;--floor:#04170e}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:22px/1.45 var(--term);overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 1px,transparent 1px 3px)}
+a{color:var(--b)}
+:focus-visible{outline:2px dashed var(--a);outline-offset:3px}
+.hidden{display:none!important}
+#prog{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:2px;width:0;z-index:60;background:var(--a);box-shadow:0 0 8px var(--a)}
+@keyframes blink{50%{opacity:0}}
+
+/* HERO (neon synthwave) */
+.hero{position:relative;min-height:78vh;min-height:78svh;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 6vw 7vh;overflow:hidden;background:linear-gradient(var(--s1) 0%,var(--s2) 55%,var(--s3) 78%,var(--pink) 100%)}
+.stars{position:absolute;left:-24px;right:-24px;top:-16px;bottom:30%;transform:translate(calc(var(--px,0)*-10px),calc(var(--py,0)*-6px));transition:transform .15s linear;overflow:hidden;pointer-events:none}
+.stars i{position:absolute;display:block;animation:tw 1.6s steps(2) infinite;box-shadow:0 0 6px currentColor}
+@keyframes tw{50%{opacity:.15}}
+.shoot{position:absolute;top:10%;left:85%;width:90px;height:2px;background:linear-gradient(90deg,#fff,transparent);opacity:0;animation:shoot 8s linear infinite 3s}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(-25deg)}3%{opacity:1}12%{opacity:0;transform:translate(-45vw,22vw) rotate(-25deg)}100%{opacity:0}}
+.sun{position:absolute;left:50%;bottom:24%;width:min(52vw,400px);aspect-ratio:1;transform:translate(calc(-50% + var(--px,0)*16px),calc(var(--py,0)*10px));transition:transform .15s linear;border-radius:50%;background:linear-gradient(var(--amber) 10%,var(--pink) 65%,var(--sun3));
+  -webkit-mask:repeating-linear-gradient(#000 0 14px,transparent 14px 18px);mask:repeating-linear-gradient(#000 0 14px,transparent 14px 18px);filter:drop-shadow(0 0 40px color-mix(in srgb,var(--pink) 70%,transparent))}
+.floor{position:absolute;left:-50%;right:-50%;bottom:0;height:24%;background:var(--floor);background-image:linear-gradient(var(--cyan) 1px,transparent 1px),linear-gradient(90deg,var(--cyan) 1px,transparent 1px);background-size:60px 60px;transform:perspective(300px) rotateX(58deg);transform-origin:top;animation:run 1.4s linear infinite;box-shadow:0 -2px 30px var(--cyan);opacity:.85}
+@keyframes run{to{background-position:0 60px}}
+.hud{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top,0px));left:6vw;right:6vw;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--cyan);font-size:20px;text-shadow:0 0 8px var(--cyan)}
+.hud .r{display:flex;align-items:center;gap:10px;text-align:right;line-height:1.05}
+.hud .t{display:flex;flex-direction:column}
+#globe{width:40px;height:40px;filter:drop-shadow(0 0 6px var(--cyan))}
+.boot{position:relative;z-index:2;color:var(--amber);min-height:4.8em;white-space:pre-line;text-shadow:0 0 6px color-mix(in srgb,var(--amber) 60%,transparent);margin-bottom:10px}
+.cur{display:inline-block;width:.6em;height:1em;background:var(--amber);vertical-align:-.15em;animation:blink 1s steps(2) infinite}
+.hero h1{position:relative;z-index:2;margin:0;font-family:var(--disp);font-weight:900;font-size:clamp(2rem,9vw,6.4rem);line-height:.98;letter-spacing:.02em;color:#fff;text-shadow:-3px 0 var(--pink),3px 0 var(--cyan),0 0 30px color-mix(in srgb,var(--pink) 60%,transparent);opacity:0;transition:opacity .2s}
+.hero h1.on{opacity:1;animation:glitch 3.5s infinite 1s}
+@keyframes glitch{0%,92%,100%{transform:none;text-shadow:-3px 0 var(--pink),3px 0 var(--cyan),0 0 30px color-mix(in srgb,var(--pink) 60%,transparent)}93%{transform:translateX(-6px) skewX(-6deg);text-shadow:6px 0 var(--pink),-6px 0 var(--cyan)}95%{transform:translateX(5px);text-shadow:-6px 0 var(--pink),6px 0 var(--cyan)}97%{transform:none}}
+.tag{position:relative;z-index:2;max-width:38ch;margin:16px 0 0;font-size:26px;color:#fff;text-shadow:0 0 10px #000}
+
+/* MINIMAL CONTENT */
+.wrap{max-width:740px;margin:0 auto;padding:9vh 6vw 10vh}
+h2{font-weight:400;font-size:1.7rem;color:var(--b);margin:0 0 14px}
+h2::before{content:"# ";color:var(--dim)}
+.search{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--dim);padding:4px 0;margin-bottom:14px}
+.search:focus-within{border-color:var(--a)}
+.search span{color:var(--a)}
+.search input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:inherit;font-size:24px;caret-color:var(--a)}
+.search kbd{border:1px solid var(--dim);padding:0 7px;color:var(--dim);font:inherit;font-size:17px}
+.tabs{display:flex;gap:14px;margin-bottom:6px}
+.tab{background:none;border:0;color:var(--dim);font:inherit;cursor:pointer;padding:0}
+.tab::before{content:"[ "}.tab::after{content:" ]"}
+.tab[aria-pressed="true"]{color:var(--a)}
+.post{display:block;width:100%;text-align:left;background:none;border:0;border-bottom:1px dashed color-mix(in srgb,var(--dim) 40%,transparent);padding:16px 0;color:inherit;font:inherit;cursor:pointer}
+.m{color:var(--dim)}
+.post .m{font-size:19px}
+.post h3{font-weight:400;font-size:1.6rem;line-height:1.2;margin:2px 0 0;color:#fff}
+.post h3::before{content:"> ";color:var(--a);opacity:0;margin-left:-1.2ch;transition:opacity .15s,margin .15s}
+.post:hover h3,.post:focus-visible h3{color:var(--a)}
+.post:hover h3::before,.post:focus-visible h3::before{opacity:1;margin-left:0}
+.none{color:var(--dim)}
+#reader h1{font-weight:400;font-size:clamp(1.9rem,6.5vw,2.8rem);line-height:1.1;color:var(--a);margin:5vh 0 14px;text-shadow:0 0 14px color-mix(in srgb,var(--a) 55%,transparent)}
+.back{background:none;border:0;color:var(--b);font:inherit;cursor:pointer;padding:0}
+.back:hover{color:var(--a)}
+.abs{border-left:2px solid var(--a);padding:2px 14px;margin:0 0 24px;color:#fff}
+.body p{margin:0 0 18px;max-width:62ch}
+.body .blk{margin:0 0 18px;max-width:62ch}
+.body h3,.body h4{font-weight:400;color:var(--b);margin:26px 0 10px;line-height:1.2}
+.body h3{font-size:1.6rem}.body h4{font-size:1.3rem}
+.body strong,.body b{color:#fff}.body em,.body i{color:var(--amber)}
+.body code{background:rgba(255,255,255,.08);padding:0 5px;color:var(--amber)}
+.body pre{background:rgba(0,0,0,.45);border-left:2px solid var(--b);padding:10px 14px;overflow-x:auto;margin:0;max-width:100%}
+.body pre code{background:none;padding:0;color:var(--fg)}
+.body ul,.body ol{margin:0;padding-left:1.4em}
+.body blockquote{margin:0;border-left:2px solid var(--dim);padding:2px 14px;color:var(--dim)}
+.body img{max-width:100%;height:auto;border:1px solid var(--dim)}
+.body table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}
+.body th,.body td{border:1px solid var(--dim);padding:4px 10px;text-align:left}
+.acts{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px}
+.acts a,.acts button{background:none;border:0;padding:0;font:inherit;color:var(--b);cursor:pointer}
+.acts a::before,.acts button::before,.links a::before{content:"[ "}.acts a::after,.acts button::after,.links a::after{content:" ]"}
+.about{margin-top:12vh}
+.about p{max-width:60ch;margin:0 0 14px}
+.links{display:flex;gap:18px;flex-wrap:wrap}
+footer{margin-top:10vh;padding-top:18px;border-top:1px dashed color-mix(in srgb,var(--dim) 50%,transparent);display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--dim);font-size:19px}
+.dots{display:flex;gap:10px}
+.dots button{width:14px;height:14px;border-radius:50%;border:1px solid var(--dim);padding:0;cursor:pointer}
+.dots button[aria-pressed="true"]{outline:2px solid var(--fg);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.floor,.hero h1.on,.cur,.stars i{animation:none}.shoot{display:none}html{scroll-behavior:auto}.post h3::before{transition:none}}
+</style>
+</head>
+<body>
+<div id="prog" aria-hidden="true"></div>
+
+<header class="hero" id="hero">
+  <div class="stars" id="stars" aria-hidden="true"></div>
+  <div class="hud"><span>NODE: AYUSH-DHABSA</span><span class="r"><span class="t"><span id="loc">UPLINK: ---</span><span id="clock">00:00:00</span></span><canvas id="globe" width="60" height="60" aria-hidden="true"></canvas></span></div>
+  <div class="sun" aria-hidden="true"></div>
+  <div class="floor" aria-hidden="true"></div>
+  <div class="boot" id="boot" aria-live="polite"></div>
+  <h1 id="title">AYUSH<br>DHABSA</h1>
+  <p class="tag">Research papers and field logs on FPGAs, edge AI and robotics.</p>
+</header>
+
+<div class="wrap">
+  <div id="list">
+    <h2>Transmissions</h2>
+    <label class="search"><span>&gt; grep</span><input id="q" type="text" placeholder="titles, abstracts, #tags" autocomplete="off" aria-label="Search posts"><kbd>/</kbd></label>
+    <div class="tabs" role="group" aria-label="Filter posts">
+      <button class="tab" data-f="all" aria-pressed="true">all</button>
+      <button class="tab" data-f="paper" aria-pressed="false">papers</button>
+      <button class="tab" data-f="blog" aria-pressed="false">blog</button>
+    </div>
+    <div id="posts"></div>
+
+    <div class="about" id="about">
+      <h2>About</h2>
+      <p>I'm Ayush, a final-year Electronics and Computer Science student at Vidyalankar Institute of Technology, Mumbai. I build hardware that thinks: FPGA designs, embedded vision pipelines and robots that find their way without GPS. This is where I publish the papers and the messy notes behind them.</p>
+      <div class="links"><a href="#">github</a><a href="#">linkedin</a><a href="#">email</a></div>
+    </div>
+  </div>
+
+  <article id="reader" class="hidden">
+    <button class="back" id="back">&lt; back</button>
+    <h1 id="rtitle"></h1>
+    <p class="m" id="rmeta"></p>
+    <div class="abs hidden" id="rabs"></div>
+    <div class="body" id="rbody"></div>
+    <div class="acts"><a class="hidden" id="rpdf" href="#">download pdf</a><button id="copyl" type="button">copy link</button></div>
+  </article>
+
+  <footer>
+    <span>&copy; 2026 ayush dhabsa</span>
+    <span class="dots" role="group" aria-label="Colour theme">
+      <button data-t="pink" aria-label="Pink theme" aria-pressed="true" style="background:#ff2a9d"></button>
+      <button data-t="amber" aria-label="Amber theme" aria-pressed="false" style="background:#ffb000"></button>
+      <button data-t="green" aria-label="Green theme" aria-pressed="false" style="background:#33ff66"></button>
+    </span>
+  </footer>
+</div>
+
+<script>
+/* ADD YOUR POSTS HERE. Copy the template, remove the comment markers, fill it in, and put a comma between posts.
+   type: "paper" or "blog" | date: YYYY-MM-DD | read: "5 min" | pdf: link to the paper (or "") | abstract: plain text (or "")
+   id: unique, letters/numbers/dashes only. The post link becomes  yourpage#/my-first-post
+   body: a list of blocks. Each block is a string and is written as HTML, so you can use
+   <b> <i> <a href="https://..."> <code> <pre><code> <h3> <ul><li> <blockquote> <img src="data:..."> <table>.
+   Use backticks ` ` around a block to write it over several lines; use "quotes" for short ones.
+
+ {id:"my-first-post",type:"blog",date:"2026-10-01",read:"5 min",title:"My first post",
+  tags:["FPGA","Verilog"],pdf:"",abstract:"",
+  body:[
+   "Plain text paragraph with <b>bold</b>, <i>italic</i>, <code>inline code</code> and a <a href='https://github.com'>link</a>.",
+   "<h3>A heading</h3>",
+   `<pre><code>module top(input clk);
+  // your Verilog here
+endmodule</code></pre>`,
+   "<ul><li>first point</li><li>second point</li></ul>"
+  ]}
+*/
+var POSTS=[
+];
+
+var filter="all",CY="#19e6ff",PK="#ff2a9d";
+var $=function(id){return document.getElementById(id)};
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function fmt(d){var m=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"],p=d.split("-");return p[2]+" "+m[+p[1]-1]+" "+p[0]}
+function meta(p){return (p.type==="paper"?"[PAPER] ":"[BLOG] ")+fmt(p.date)+" · "+p.read}
+var RM=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function renderList(){
+  var box=$("posts"),q=$("q").value.toLowerCase().trim().replace(/^#/,"");box.textContent="";
+  POSTS.slice().sort(function(a,b){return a.date<b.date?1:-1}).forEach(function(p){
+    if(filter!=="all"&&p.type!==filter)return;
+    if(q&&(p.title+" "+p.abstract+" "+p.tags.join(" ")).toLowerCase().indexOf(q)<0)return;
+    var b=el("button","post");b.appendChild(el("div","m",meta(p)));b.appendChild(el("h3",null,p.title));
+    b.addEventListener("click",function(){location.hash="#/"+p.id});box.appendChild(b);
+  });
+  if(!box.children.length)box.appendChild(el("p","none","no transmissions found."));
+}
+function route(){
+  var id=location.hash.replace("#/",""),p=POSTS.filter(function(x){return x.id===id})[0];
+  $("list").classList.toggle("hidden",!!p);$("reader").classList.toggle("hidden",!p);$("hero").classList.toggle("hidden",!!p);
+  if(!p)return;
+  $("rtitle").textContent=p.title;$("rmeta").textContent=meta(p)+"  "+p.tags.map(function(t){return "#"+t}).join(" ");
+  $("rabs").textContent=p.abstract;$("rabs").classList.toggle("hidden",!p.abstract);
+  var b=$("rbody");b.textContent="";p.body.forEach(function(t){var d=el("div","blk");d.innerHTML=t;b.appendChild(d)});
+  b.querySelectorAll("a[href]").forEach(function(a){if(/^https?:/i.test(a.href)){a.target="_blank";a.rel="noopener noreferrer"}});
+  var l=$("rpdf");l.classList.toggle("hidden",!p.pdf);if(p.pdf)l.href=p.pdf;
+  window.scrollTo(0,0);
+}
+document.querySelectorAll(".tab").forEach(function(c){c.addEventListener("click",function(){
+  filter=c.dataset.f;document.querySelectorAll(".tab").forEach(function(x){x.setAttribute("aria-pressed",x===c)});renderList()})});
+$("q").addEventListener("input",renderList);
+$("back").addEventListener("click",function(){location.hash="#"});
+window.addEventListener("hashchange",route);
+renderList();route();
+
+document.addEventListener("keydown",function(e){
+  var tag=(e.target&&e.target.tagName)||"";
+  if(e.key==="/"&&tag!=="INPUT"&&!$("list").classList.contains("hidden")){e.preventDefault();$("q").focus()}
+  else if(e.key==="Escape"){if(tag==="INPUT")e.target.blur();else if(!$("reader").classList.contains("hidden"))location.hash="#"}
+});
+function prog(){var sc=document.documentElement.scrollHeight-window.innerHeight;$("prog").style.width=($("reader").classList.contains("hidden")||sc<=0)?"0":(window.scrollY/sc*100)+"%"}
+window.addEventListener("scroll",prog,{passive:true});window.addEventListener("hashchange",prog);
+$("copyl").addEventListener("click",function(){var b=this;try{navigator.clipboard.writeText(location.href).then(function(){b.textContent="copied";setTimeout(function(){b.textContent="copy link"},1500)})}catch(x){b.textContent="copy from address bar"}});
+
+/* hero: stars, parallax, boot sequence */
+(function(){var box=$("stars"),cols=["#fff","#fff","var(--cyan)","var(--pink)","var(--amber)"];
+for(var i=0;i<80;i++){var st=document.createElement("i"),z=Math.random()<.2?4:2;
+st.style.cssText="left:"+(Math.random()*100)+"%;top:"+(Math.random()*100)+"%;width:"+z+"px;height:"+z+"px;color:"+cols[i%5]+";background:"+cols[i%5]+";animation-delay:-"+(Math.random()*3)+"s;animation-duration:"+(1.2+Math.random()*2)+"s";box.appendChild(st)}
+box.appendChild(el("div","shoot"))})();
+var hero=$("hero");
+if(!RM)hero.addEventListener("mousemove",function(e){var r=hero.getBoundingClientRect();hero.style.setProperty("--px",((e.clientX-r.left)/r.width-.5)*2);hero.style.setProperty("--py",((e.clientY-r.top)/r.height-.5)*2)});
+var lines=["> BOOTING NR-OS v2.087","> USER: AYUSH_DHABSA","> LOADING TRANSMISSIONS ... OK"],boot=$("boot"),title=$("title");
+if(RM){boot.textContent=lines.join("\n");title.classList.add("on")}
+else{var li=0,ci=0,out="";(function type(){
+  if(li>=lines.length){boot.textContent=out;boot.appendChild(el("span","cur"));title.classList.add("on");return}
+  out+=lines[li][ci++];boot.textContent=out;boot.appendChild(el("span","cur"));
+  if(ci>=lines[li].length){out+="\n";li++;ci=0;setTimeout(type,260)}else setTimeout(type,24)})()}
+
+/* clock, uplink (browser time zone), globe */
+var clock=$("clock");
+function tick(){var d=new Date();clock.textContent=[d.getHours(),d.getMinutes(),d.getSeconds()].map(function(n){return String(n).padStart(2,"0")}).join(":")}
+tick();setInterval(tick,1000);
+try{var tz=Intl.DateTimeFormat().resolvedOptions().timeZone||"";$("loc").textContent="UPLINK: "+(tz.split("/").pop().replace(/_/g," ").toUpperCase()||"UNKNOWN")}catch(e){$("loc").textContent="UPLINK: UNKNOWN"}
+var g=$("globe").getContext("2d"),GR=26,GC=30,rot=0;
+function globe(){
+  g.clearRect(0,0,60,60);g.strokeStyle=CY;g.lineWidth=1.5;
+  g.beginPath();g.arc(GC,GC,GR,0,7);g.stroke();g.lineWidth=1;
+  for(var i=0;i<3;i++){var rx=Math.abs(Math.cos(rot+i*Math.PI/3))*GR;g.beginPath();g.ellipse(GC,GC,Math.max(rx,.5),GR,0,0,7);g.stroke()}
+  [-.55,0,.55].forEach(function(l){var w=GR*Math.sqrt(1-l*l);g.beginPath();g.ellipse(GC,GC+GR*l,w,w*.16,0,0,7);g.stroke()});
+  g.fillStyle=PK;g.beginPath();g.arc(GC+7,GC-4,2.5+Math.sin(Date.now()/300),0,7);g.fill();rot+=.015;
+}
+globe();
+if(!RM)(function f(){globe();requestAnimationFrame(f)})();
+
+/* themes */
+function applyTheme(t){
+  var r=document.documentElement;if(t==="pink")r.removeAttribute("data-theme");else r.setAttribute("data-theme",t);
+  var cs=getComputedStyle(r);CY=cs.getPropertyValue("--b").trim()||CY;PK=cs.getPropertyValue("--a").trim()||PK;
+  document.querySelectorAll(".dots button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.t===t)});
+  try{localStorage.setItem("theme",t)}catch(e){}
+  globe();
+}
+document.querySelectorAll(".dots button").forEach(function(b){b.addEventListener("click",function(){applyTheme(b.dataset.t)})});
+var saved="pink";try{saved=localStorage.getItem("theme")||"pink"}catch(e){}
+applyTheme(["pink","amber","green"].indexOf(saved)>-1?saved:"pink");
+</script>
+</body>
+</html>
